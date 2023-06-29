@@ -1,0 +1,24 @@
+package models
+
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/parthahere001/go-bookstore-api/pkg/config"
+)
+
+var db *gorm.DB
+
+type Book struct {
+	gorm.Model
+	Name string `grom:""json:"name"`
+	Author string `json:"author"`
+	Publication string `json:"publication"`
+
+}
+
+
+func init (){
+	config.Connect()
+	db = config.GetDB()
+	db.AutoMigrate(&Book{})
+	
+}
